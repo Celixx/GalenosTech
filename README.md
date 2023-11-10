@@ -1,4 +1,4 @@
-# Tienda-Mascotas-2
+# GalenosTech
 Instrucciones:
   - Abrir una terminal y navegar a C:\ProyectosDjango (Si estas  en C:\Users\<usuario> ejecutar cd .. 2 veces y luego cd ProyectosDjango)
   - ejectuar git clone https://github.com/Celixx/Tienda-Mascotas-2.git
