@@ -1,0 +1,70 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block stylesheet %}
+    
+{% endblock stylesheet %}
+
+{% block content %}
+    
+<div class="p-3">
+  <h2 class="fs-1">Ficha de producto</h2>
+  <div class=" shadow container d-flex align-items-center justify-content-center">
+    <div class=" col-6 text-center p-5">
+      <img src="{% static 'core/Images/question_mark.png'%}" class="img-fluid" alt="Descripción de la imagen">
+    </div>
+    <div class="col-6 p-2 ">
+      <div>
+        <div class="fs-1">
+          Saco de alimento Don Cuchito
+        </div>
+        <div class="fw-bold text-danger">
+          AGOTADO
+        </div>
+
+        <div class="lead">
+
+          <scan class="precio">
+            $6.000
+          </scan>
+
+        </div>
+        <p class="descripcion">
+          Descripción:
+          <br><br>
+          Don Cuchito, 1kg, sabor pescado, adulto
+          <br><br>
+          En stock: 0 unidades
+        </p>
+        <br>
+        <br>
+        <div class="d-flex justify-content-start align-items-center">
+          <div class="btn-group gap-3">
+            <a class="btn btn-primary" type="submit" href="{% url 'carritoCompras' %}">Comprar ahora</a>
+            <a class="btn btn-primary" type="submit" href="{% url 'carritoCompras' %}">Agregar al carrito</a>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+{% endblock content %}
+
+{% block script %}
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <!-- Mis scripts -->
+  <script src="{% static 'core/js/carga_elementos.js' %}"></script>
+{% endblock script %}
+
+
+
+
+
+
+  
+ 

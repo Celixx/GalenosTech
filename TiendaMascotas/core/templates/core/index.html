@@ -1,0 +1,106 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block stylesheet %}
+    
+{% endblock stylesheet %}
+
+{% block content %}
+    
+    <!------------------------------------------------------------------------------------->
+    <!-------------------------------------CARRUSEL---------------------------------------->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-light alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}    
+                            
+    <div class="row">
+        <div id="carouselExampleIndicators" class="carousel slide">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src=" {% static 'core/images/foto1.jpg' %} " class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'core/images/foto2.jpg' %}" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'core/images/foto3.jpg' %}" class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    <!----------------------------------------------------------------------------------------------->
+    <!--------------------------------------Ofertas------------------------------------------>
+    <div class="container">
+        <div class="row">           
+            {% for producto in productos %}
+                <div class="col-sm-12 col-md-4 col-lg-2">
+                    <a href="{% url 'producto.detalle' producto.id %}" class="p-2 shadow d-flex flex-column align-items-center nav-link">
+                        <img src="/media/{{ producto.imagen }}" width="175px" alt="">
+                        <div class="d-flex align-items-start flex-column">
+                            {% if producto.stock == 0 %}
+                                <p style="color: red;"> AGOTADO</p>
+                            {% endif %}
+                            {% if producto.descuento_oferta == 0 and producto.stock > 0 %}
+                                <p style="color: green;"> DISPONIBLE</p>
+                            {% endif %}
+                            {% if producto.descuento_oferta > 0 and producto.stock > 0 %}
+                                <p style="color: blue;">EN OFERTA</p>
+                            {% endif %}
+                            <p>{{ producto.nombre }} </p>
+                            {% if producto.descuento_oferta > 0 and producto.stock > 0 %}
+                            <span class="text-decoration-line-through">${{ producto.precio }}</span>
+                            <span class="fs-4">${{ producto.descuento_oferta }}</span>
+                            {% else %}
+                            <p class="fs-4">${{ producto.precio }}</p>
+                            {% endif %}
+                            <p>{{ producto.descripcion }}</p>
+                            <p>En stock: {{ producto.stock }}</p>
+                        </div>
+                    </a>
+                </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+    <div class="container  ">
+        <div class="row-cols-1">
+            <div class="col">
+                <a href="{% url 'API_Ropa' %}" class="d-flex">
+                    <!-- Imagen relacionada con la canción -->
+                    <img width="130px" src="{% static 'core/images/download.jpg' %}" alt="" />
+                    <!-- Producto -->
+                    <p class="text-"> Por compras superiores a $20.000 ya</br>
+                        estás concursando por una prenda de</br>
+                        vestira mirá aquí los premios.
+                    </p>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+{% endblock content %}

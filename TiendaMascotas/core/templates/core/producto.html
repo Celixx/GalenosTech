@@ -1,0 +1,57 @@
+
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block stylesheet %}
+
+{% endblock stylesheet %}
+
+{% block content %}
+
+<div class="p-2">
+  <h2 class="fs-1">Ficha de producto</h2>
+  <div class="shadow container d-flex align-items-center justify-content-center">
+    <div class=" col-6 text-center p-5">
+      <img src="/media/{{ producto.imagen }}" class="img-fluid" alt="Descripción de la imagen">
+    </div>
+    <div class="col-6 p-2">
+      <div>
+        <div class="fs-1">
+          {{ producto.nombre }}
+        </div>
+        {% if producto.descuento_oferta > 0 %}
+          <p class="fw-bold text-primary">EN OFERTA {{ producto.descuento_oferta }}% DE DESCUENTO</p>
+        {% endif %}
+        <div class="fw-bold text-success">
+          Stock: {{ producto.stock}}
+        </div>
+        {% if producto.descuento_oferta > 0 %}
+          <p class="text-decoration-line-through">${{ producto.precio }}</p>
+          <p class="fw-bold">${{ producto.descuento_oferta }}</p>
+        {% else %}
+          <p class="fw-bold">${{ producto.precio }}</p>
+        {% endif %}
+        <div class="descripcion">
+          Descripción:
+          <br/>
+          {{ producto.descripcion }}
+        </div>
+        <br>
+        <br>
+        <div class="d-flex justify-content-start align-items-center">
+          <div class="btn-group gap-3">
+            <a class="btn btn-primary" type="submit" href="{% url 'carritoCompras' %}">Comprar ahora</a>
+            <a class="btn btn-primary" type="submit" href="{% url 'agregar_producto_al_carrito' producto.id %}">Agregar al carrito</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+
+{% block script %}
+    <script src="{% static 'core/js/carga_elementos.js' %}"></script>
+{% endblock script %}

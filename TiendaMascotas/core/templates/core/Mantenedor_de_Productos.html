@@ -1,0 +1,89 @@
+
+
+
+
+
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block stylesheet %}
+<style>
+    .error {
+        font-weight: bold;
+        font-size: 14px;
+        color: red;
+    }
+</style>
+
+{% endblock stylesheet %}
+
+{% block content %}
+    
+    
+<div class="m-3">
+    <div class="d-flex-column justify-content-center ">
+        <form id="formulario3" class="container  justify-content-center" enctype="multipart/form-data"  method="post" action="{% url 'Mantenedor_de_Productos' %}">
+            <h2>Mantenedor de Productos</h2>
+
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <!-- Botones -->
+            <div class="d-flex gap-4">
+                <button type="submit" class="btn btn-primary" name="action" value="guardar" >Actualizar</button>
+                <button type="submit" class="btn btn-success" name="action" value="nuevo">Crear Producto</button>
+                <button type="submit" class="btn btn-danger" name="action" value="eliminar">Eliminar</button>
+            </div>
+        </form>
+
+        {% if productos %}
+
+            <div class=" m-3">
+                <table class="container justify-content-center  table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Categoría</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">% Desc Subscriptor</th>
+                            <th scope="col">% Desc Oferta</th>
+                            <th scope="col">% Imágen</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {% for producto in productos %}
+                            <tr>
+                                <td> {{ producto.id }} </td>
+                                <td> {{ producto.categoria }} </td>
+                                <td> {{ producto.nombre }} </td>
+                                <td> {{ producto.descripcion }} </td>
+                                <td> {{ producto.precio }} </td>
+                                <td> {{ producto.descuento_subscriptor }} </td>
+                                <td> {{ producto.descuento_oferta }} </td>
+                                <td> <img src="/media/{{ producto.imagen }}" class="img-thumbnail" width="75px" height="75px" alt=""> </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        {% endif %}
+
+    </div>
+</div>
+    
+{% endblock content %}
+
+{% block script %}
+        <!-- JQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <!-- JQuery Validate -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Mis scripts -->
+    <script src="{% static 'core/js/carga_elementos.js' %}"></script>
+    <script src="{% static 'core/js/valida_registro.js' %}"></script>
+{% endblock script %}
