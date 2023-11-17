@@ -72,7 +72,9 @@ class MantenedorProducto(Form):
 class MantenedorUsuario(UserCreationForm):
 
     roles_choices = [
-        ('cliente', 'Cliente'),
+        ('paciente', 'Paciente'),
+        ('medico', 'Médico'),
+        ('Secretaria', 'Secretaria'),
         ('administrador', 'Administrador'),
     ]
     id = forms.IntegerField(widget=forms.NumberInput(attrs=form_control), label="ID(Poblar solamente si se desea eliminar)", required=False, )

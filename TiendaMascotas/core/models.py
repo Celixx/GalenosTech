@@ -59,8 +59,10 @@ class Producto(models.Model):
 
 class Perfil(models.Model):
     USUARIO_CHOICES = [
-        ('Cliente', 'Cliente'),
-        ('Administrador', 'Administrador'),
+        ('paciente', 'Paciente'),
+        ('medico', 'Médico'),
+        ('Secretaria', 'Secretaria'),
+        ('administrador', 'Administrador'),
         ('Superusuario', 'Superusuario'),
     ]
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
