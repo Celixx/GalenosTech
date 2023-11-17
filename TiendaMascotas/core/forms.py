@@ -3,6 +3,7 @@ from django.forms import ModelForm, fields, Form
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import Categoria, Producto, Bodega, Perfil
+from django.forms.widgets import SelectDateWidget
 
 form_hidden = {'class': 'd-none'}
 form_select = {'class': 'form-select'}
@@ -114,3 +115,50 @@ class BodegaForm(forms.Form):
 
     class Meta:
         fields = '__all__'
+
+class HoraForm(Form):
+    
+    previsiones = [
+        ('---', '---'),
+        ('fonasa', 'Fondo Nacional de Salud (FONASA)'),
+        ('isapre_codelco', 'Isapre de Codelco'),
+        ('isapre_banmedica', 'Isapre Banmédica'),
+        ('isapre_colmena', 'Isapre Colmena'),
+        ('isapre_consalud', 'Isapre Consalud'),
+        ('isapre_cruzBlanca', 'Isapre Cruz Blanca'),
+        ('isapre_cruzNorte', 'Isapre Cruz del Norte'),
+        ('isapre_fundacionBancoEstado', 'Isapre Fundación Banco Estado'),
+        ('isapre_nuevaMasvida', 'Isapre Nueva Másvida'),
+        ('isapre_vidaTres', 'Isapre Vida Tres'),
+        ('particular', 'Particular'),
+    ]
+
+    especialidades = [
+        ('---', '---'),
+        ('pediatria', 'Pediatría'),
+        ('traumatologia', 'Traumatología'),
+        ('cardiologia', 'Cardiología'),
+        ('dermatologia', 'Dermatología'),
+        ('endocrinologia', 'Endocrinología'),
+        ('fonoaudiologia', 'Fonoaudiología'),
+        ('geriatria', 'Gertiatría'),
+        ('ginecologia', 'Ginecología'),
+        ('urologia', 'Urología'),
+        ('kinesiologia', 'Kinesiología'),
+        ('Oncología', 'Oncología'),
+    ]
+
+    doctores = [
+        ('---', '---'),
+        ('camiloGonzalez', 'Camilo González'),
+        ('jorgePerez', 'Jorge Pérez'),
+        ('piaArroyo', 'Pía Arroyo'),
+    ]
+
+    rut = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control' ,'placeholder': 'Ej: 19.283.294-1'}), label="Rut", required=True)
+    prevision = forms.ChoiceField(choices=previsiones, widget=forms.Select(attrs={'class': 'form-control'}), label="Previsión de Salud", required=True)
+    especialidad = forms.ChoiceField(choices=especialidades, widget=forms.Select(attrs={'class': 'form-control'}), label="Especialidad", required=True)
+    doctor = forms.ChoiceField(choices=doctores, widget=forms.Select(attrs={'class': 'form-control'}), label="Doctor/a", required=True)
+    fecha = forms.DateField(widget=SelectDateWidget(attrs={'class': 'form-control'}))
+    class Meta:
+        fields = ['rut', 'prevision', 'especialidad', 'doctor']
