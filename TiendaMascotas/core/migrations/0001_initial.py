@@ -83,7 +83,6 @@ class Migration(migrations.Migration):
                 ('tipo_usuario', models.CharField(choices=[('Cliente', 'Cliente'), ('Administrador', 'Administrador'), ('Superusuario', 'Superusuario')], max_length=50, verbose_name='Tipo de usuario')),
                 ('rut', models.CharField(max_length=15, verbose_name='RUT')),
                 ('direccion', models.CharField(max_length=400, verbose_name='Dirección')),
-                ('subscrito', models.BooleanField(verbose_name='Subscrito')),
                 ('imagen', models.ImageField(upload_to='perfiles/', verbose_name='Imagen')),
                 ('usuario', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],

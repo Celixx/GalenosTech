@@ -60,9 +60,6 @@ $(document).ready(function() {
             direccion: {
                 required: true,
             },
-            subscrito: {
-                required: false,
-            },
             password1: {
                 required: true,
                 minlength: 5
