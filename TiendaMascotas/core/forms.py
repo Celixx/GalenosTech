@@ -31,14 +31,13 @@ class RegistrarForm(UserCreationForm):
     apellido = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'González', 'class': 'form-control'}), label="Apellido", required=True)
     correo = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'agustingonzalezmurua@gmail.com', 'class': 'form-control'}), label="Correo", required=True)
     direccion = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Hierbas Buenas 377', 'class': 'form-control'}), label="Dirección", required=True)
-    subscrito = forms.BooleanField(widget=forms.CheckboxInput(attrs=form_check), label='Subscripción', required=False)
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': '********', 'class': 'form-control'}), label="Contraseña", required=True)
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': '********', 'class': 'form-control'}), label="Confirmar Contraseña", required=True)
     imagen = forms.CharField(widget=forms.FileInput(attrs=form_file), label='Imagen', required=True)
 
     class Meta:
         model = User
-        fields = ['rut', 'username', 'nombre','apellido', 'correo', 'direccion', 'subscrito', 'password1', 'password2', 'imagen']
+        fields = ['rut', 'username', 'nombre','apellido', 'correo', 'direccion', 'password1', 'password2', 'imagen']
 
 class MisDatosForm(UserCreationForm):
     rut = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Rut", max_length=15, required=True, )
@@ -47,14 +46,13 @@ class MisDatosForm(UserCreationForm):
     apellido = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Apellido", required=True)
     correo = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Correo", required=True)
     direccion = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Dirección", required=True)
-    subscrito = forms.BooleanField(widget=forms.CheckboxInput(attrs=form_check), label='Subscripción', required=False)
     password1 = forms.CharField(widget=forms.PasswordInput(attrs=form_control), label="Contraseña", required=True)
     password2 = forms.CharField(widget=forms.PasswordInput(attrs=form_control), label="Confirmar Contraseña", required=True)
     imagen = forms.CharField(widget=forms.FileInput(attrs=form_file), label='Imagen', required=True)
 
     class Meta:
         model = User
-        fields = ['rut', 'username', 'nombre','apellido', 'correo', 'direccion', 'subscrito', 'password1', 'password2', 'imagen']
+        fields = ['rut', 'username', 'nombre','apellido', 'correo', 'direccion', 'password1', 'password2', 'imagen']
     
 class MantenedorProducto(Form):
     id = forms.IntegerField(widget=forms.NumberInput(attrs=form_control), label="ID(Poblar solamente si se desea eliminar o actualizar)", required=False, )
@@ -85,14 +83,13 @@ class MantenedorUsuario(UserCreationForm):
     apellido = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Apellido", required=False)
     correo = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Correo", required=False)
     direccion = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Dirección", required=False)
-    subscrito = forms.BooleanField(widget=forms.CheckboxInput(attrs=form_check), label='Subscripción', required=False)
     password1 = forms.CharField(widget=forms.PasswordInput(attrs=form_control), label="Contraseña", required=False)
     password2 = forms.CharField(widget=forms.PasswordInput(attrs=form_control), label="Confirmar contraseña", required=False)
     imagen = forms.CharField(widget=forms.FileInput(attrs=form_file), label='Imagen', required=False)
 
     class Meta:
         model = User
-        fields = ['id', 'rut', 'rol', 'username', 'nombre','apellido', 'correo', 'direccion', 'subscrito', 'password1', 'password2', 'imagen']
+        fields = ['id', 'rut', 'rol', 'username', 'nombre','apellido', 'correo', 'direccion', 'password1', 'password2', 'imagen']
 
 
 class BodegaForm(forms.Form):

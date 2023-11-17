@@ -51,7 +51,6 @@
                                     <th scope="col">Apellidos</th>
                                     <th scope="col">Correo</th>
                                     <th scope="col">Dirección</th>
-                                    <th scope="col">Con Subscripción</th>
                                     <th scope="col">Imágen</th>
                                 </tr>
                             </thead>
@@ -79,16 +78,6 @@
                                     </td>
                                     <td>
                                         {{ usuario.perfil.direccion }}
-                                    </td>
-                                    {% if usuario.perfil.subscrito %}
-                                        <td>
-                                            <p>Si</p>
-                                        </td>
-                                    {% else %}
-                                        <td>
-                                            <p>No</p>
-                                        </td>
-                                    {% endif %}
                                     <td>
                                         <img src="/media/{{ usuario.perfil.imagen }}" class="img-thumbnail" width="75px" height="75px" alt="">
                                     </td>
