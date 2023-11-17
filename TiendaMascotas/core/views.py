@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from .models import Perfil, Categoria, Producto, Bodega, DetalleBoleta, Carrito
-from .forms import IngresarForm,RegistrarForm, MisDatosForm, MantenedorProducto, MantenedorUsuario, BodegaForm
+from .forms import IngresarForm,RegistrarForm, MisDatosForm, MantenedorProducto, MantenedorUsuario, BodegaForm, HoraForm
 from .tools import eliminar_registro, verificar_eliminar_registro
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -10,9 +10,7 @@ from django.db.models import Count
 
 
 def index(request):
-    productos = Producto.objects.all().annotate(stock = Count('bodega'))
-    datos = {'productos': productos}
-    return render(request, 'core/index.html', datos)
+    return render(request, 'core/index.html', {'form': HoraForm()})
 
 def misdatos(request):
     perfil = request.user.perfil
