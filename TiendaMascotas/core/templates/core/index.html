@@ -53,52 +53,22 @@
         </div>
     </div>
     <!----------------------------------------------------------------------------------------------->
-    <!--------------------------------------Ofertas------------------------------------------>
+    <!--------------------------------------Formulario------------------------------------------>
     <div class="container">
-        <div class="row">           
-            {% for producto in productos %}
-                <div class="col-sm-12 col-md-4 col-lg-2">
-                    <a href="{% url 'producto.detalle' producto.id %}" class="p-2 shadow d-flex flex-column align-items-center nav-link">
-                        <img src="/media/{{ producto.imagen }}" width="175px" alt="">
-                        <div class="d-flex align-items-start flex-column">
-                            {% if producto.stock == 0 %}
-                                <p style="color: red;"> AGOTADO</p>
-                            {% endif %}
-                            {% if producto.descuento_oferta == 0 and producto.stock > 0 %}
-                                <p style="color: green;"> DISPONIBLE</p>
-                            {% endif %}
-                            {% if producto.descuento_oferta > 0 and producto.stock > 0 %}
-                                <p style="color: blue;">EN OFERTA</p>
-                            {% endif %}
-                            <p>{{ producto.nombre }} </p>
-                            {% if producto.descuento_oferta > 0 and producto.stock > 0 %}
-                            <span class="text-decoration-line-through">${{ producto.precio }}</span>
-                            <span class="fs-4">${{ producto.descuento_oferta }}</span>
-                            {% else %}
-                            <p class="fs-4">${{ producto.precio }}</p>
-                            {% endif %}
-                            <p>{{ producto.descripcion }}</p>
-                            <p>En stock: {{ producto.stock }}</p>
-                        </div>
-                    </a>
+        <div class="row justify-content-center">
+            <div class="col-4 border border-3 p-4">
+                <div class="container text-center p-4">
+                    <h1>Pide tu hora online!</h1>
                 </div>
+            
+                <form method="POST" id="form">
 
-            {% endfor %}
-
-        </div>
-    </div>
-    <div class="container  ">
-        <div class="row-cols-1">
-            <div class="col">
-                <a href="{% url 'API_Ropa' %}" class="d-flex">
-                    <!-- Imagen relacionada con la canción -->
-                    <img width="130px" src="{% static 'core/images/download.jpg' %}" alt="" />
-                    <!-- Producto -->
-                    <p class="text-"> Por compras superiores a $20.000 ya</br>
-                        estás concursando por una prenda de</br>
-                        vestira mirá aquí los premios.
-                    </p>
-                </a>
+                    {% csrf_token %} 
+                    {{ form.as_p }} 
+                        <div class="d-grid gap-4 col-5 mx-auto p-2">
+                            <button class="btn btn-primary" type="submit">Solicitar</button>
+                        </div> 
+                </form>
             </div>
         </div>
     </div>
