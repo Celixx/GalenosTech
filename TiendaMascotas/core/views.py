@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from .models import Perfil, Categoria, Producto, Bodega, DetalleBoleta, Carrito
-from .forms import IngresarForm,RegistrarForm, MisDatosForm, MantenedorProducto, MantenedorUsuario, BodegaForm
+from .forms import IngresarForm,RegistrarForm, MisDatosForm, MantenedorProducto, MantenedorUsuario, BodegaForm, HoraForm
 from .tools import eliminar_registro, verificar_eliminar_registro
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -10,9 +10,7 @@ from django.db.models import Count
 
 
 def index(request):
-    productos = Producto.objects.all().annotate(stock = Count('bodega'))
-    datos = {'productos': productos}
-    return render(request, 'core/index.html', datos)
+    return render(request, 'core/index.html', {'form': HoraForm()})
 
 def misdatos(request):
     perfil = request.user.perfil
@@ -27,7 +25,6 @@ def misdatos(request):
             user.set_password(form.cleaned_data['password1'])
             perfil.rut = form.cleaned_data['rut']
             perfil.direccion = form.cleaned_data['direccion']
-            perfil.subscrito = form.cleaned_data['subscrito']
             perfil.imagen = request.FILES['imagen']
             perfil.save()
             user.save()
@@ -79,13 +76,11 @@ def registro(request):
             user.save()
             rut = form.cleaned_data['rut']
             direccion = form.cleaned_data['direccion']
-            subscrito = form.cleaned_data['subscrito']
             Perfil.objects.create(
                 usuario=user, 
                 tipo_usuario='Cliente', 
                 rut=rut, 
                 direccion=direccion, 
-                subscrito=subscrito,
                 imagen=request.FILES['imagen'])
             messages.error(request, 'Cuenta creada con éxito')
             return redirect(ingreso)
@@ -116,7 +111,6 @@ def Mantenedor_de_usuarios(request):
                 user.save()
                 rut = form.cleaned_data['rut']
                 direccion = form.cleaned_data['direccion']
-                subscrito = form.cleaned_data['subscrito']
 
                 rol = form.cleaned_data['rol']
                 Perfil.objects.create(
@@ -124,7 +118,6 @@ def Mantenedor_de_usuarios(request):
                     tipo_usuario=rol.capitalize(), 
                     rut=rut, 
                     direccion=direccion, 
-                    subscrito=subscrito,
                     imagen=request.FILES['imagen'])
                 
                 usuarios = User.objects.all()
@@ -145,7 +138,6 @@ def Mantenedor_de_usuarios(request):
                 user.set_password(form.cleaned_data['password1'])
                 perfil.rut = form.cleaned_data['rut']
                 perfil.direccion = form.cleaned_data['direccion']
-                perfil.subscrito = form.cleaned_data['subscrito']
                 perfil.imagen = request.FILES['imagen']
                 rol = form.cleaned_data['rol']
                 perfil.tipo_usuario = rol.capitalize()
@@ -339,10 +331,10 @@ def agregar_producto_al_carrito(request, id):
     precio_normal, precio_oferta, precio_subscr, hay_desc_oferta, hay_desc_subscr = calcular_precios_producto(producto_obj)
 
     precio = producto_obj.precio
-    descuento_subscriptor = producto_obj.descuento_subscriptor if perfil.subscrito else 0
-    descuento_total=producto_obj.descuento_subscriptor + producto_obj.descuento_oferta if perfil.subscrito else producto_obj.descuento_oferta
-    precio_a_pagar = precio_subscr if perfil.subscrito else precio_oferta
-    descuentos = precio - precio_subscr if perfil.subscrito else precio - precio_oferta
+    descuento_subscriptor =  0
+    descuento_total= producto_obj.descuento_oferta
+    precio_a_pagar = precio_oferta
+    descuentos = precio - precio_oferta
 
     Carrito.objects.create(
         cliente=perfil,

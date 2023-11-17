@@ -51,7 +51,6 @@
                                     <th scope="col">Apellidos</th>
                                     <th scope="col">Correo</th>
                                     <th scope="col">Dirección</th>
-                                    <th scope="col">Con Subscripción</th>
                                     <th scope="col">Imágen</th>
                                 </tr>
                             </thead>
@@ -79,16 +78,6 @@
                                     </td>
                                     <td>
                                         {{ usuario.perfil.direccion }}
-                                    </td>
-                                    {% if usuario.perfil.subscrito %}
-                                        <td>
-                                            <p>Si</p>
-                                        </td>
-                                    {% else %}
-                                        <td>
-                                            <p>No</p>
-                                        </td>
-                                    {% endif %}
                                     <td>
                                         <img src="/media/{{ usuario.perfil.imagen }}" class="img-thumbnail" width="75px" height="75px" alt="">
                                     </td>
@@ -112,6 +101,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
     <!-- Mis scripts -->
-    <script src="{% static 'core/js/carga_elementos.js' %}"></script>
     <script src="{% static 'core/js/valida_mantenedor_usuario.js' %}"></script>
 {% endblock script %}

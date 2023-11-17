@@ -4,6 +4,8 @@
 
 {% block stylesheet %}
     <style>
+        
+      
         .error {
             font-weight: bold;
             font-size: 14px;
@@ -13,38 +15,43 @@
 {% endblock stylesheet %}
 
 {% block content %}
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-4 border border-3 p-4">
-                <div class="container text-center p-4">
-                    <h1>Ingreso a la tienda</h1>
+    
+    <body class="bg-image" style="background-image: url('media/assets/medicofondo.jpg');">
+        <div class="container" >
+        
+            <div class="row justify-content-center">
+                
+                <div class="col-4 border border-3 p-4">
+                    <div class="container text-center p-4">
+                        <h1>Iniciar Sesión</h1>
+                    </div>
+                
+                    <form method="POST" id="form">
+    
+                        {% csrf_token %} 
+                        {{ form.as_p }} 
+                            <div class="d-grid gap-4 col-5 mx-auto p-2">
+                                <button class="btn btn-primary" type="submit">Ingresar</button>
+                            </div>
+                            <div class="container-fluid d-flex justify-content-around p-2">
+                                <a href="{% url 'registro' %}" class=" ">Registrarse</a>
+                                <a href="{% url 'registro' %}" class="">Olvide mi contraseña</a>
+                            </div>
+    
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="alert alert-light alert-dismissible fade show" role="alert">
+                                        {{ message }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}    
+                                
+                    </form>
                 </div>
-            
-                <form method="POST" id="form">
-
-                    {% csrf_token %} 
-                    {{ form.as_p }} 
-                        <div class="d-grid gap-4 col-5 mx-auto p-2">
-                            <button class="btn btn-primary" type="submit">Ingresar</button>
-                        </div>
-                        <div class="container-fluid d-flex justify-content-around p-2">
-                            <a href="{% url 'registro' %}" class=" ">Registrarse</a>
-                            <a href="{% url 'registro' %}" class="">Olvide mi contraseña</a>
-                        </div>
-
-                        {% if messages %}
-                            {% for message in messages %}
-                                <div class="alert alert-light alert-dismissible fade show" role="alert">
-                                    {{ message }}
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                </div>
-                            {% endfor %}
-                        {% endif %}    
-                            
-                </form>
             </div>
         </div>
-    </div>
+    </body>
     
 {% endblock content %}
 
