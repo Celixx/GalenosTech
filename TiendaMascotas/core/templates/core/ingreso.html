@@ -16,12 +16,12 @@
 
 {% block content %}
     
-    <body class="bg-image" style="background-image: url('media/assets/medicofondo.jpg');">
+    <body class="" style="background-image: url('media/assets/medicofondo.png');">
         <div class="container" >
         
             <div class="row justify-content-center">
                 
-                <div class="col-4 border border-3 p-4">
+                <div class="col-4 border border-3 m-3 p-4" style="background-color: rgb(34, 155, 176);">
                     <div class="container text-center p-4">
                         <h1>Iniciar Sesión</h1>
                     </div>
@@ -31,11 +31,11 @@
                         {% csrf_token %} 
                         {{ form.as_p }} 
                             <div class="d-grid gap-4 col-5 mx-auto p-2">
-                                <button class="btn btn-primary" type="submit">Ingresar</button>
+                                <button class="btn btn-dark" type="submit">Ingresar</button>
                             </div>
                             <div class="container-fluid d-flex justify-content-around p-2">
-                                <a href="{% url 'registro' %}" class=" ">Registrarse</a>
-                                <a href="{% url 'registro' %}" class="">Olvide mi contraseña</a>
+                                <a href="{% url 'registro' %}" class="text-dark">Registrarse</a>
+                                <a href="{% url 'registro' %}" class="text-dark">Olvide mi contraseña</a>
                             </div>
     
                             {% if messages %}
