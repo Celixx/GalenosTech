@@ -80,15 +80,15 @@ class MantenedorUsuario(UserCreationForm):
     ]
     id = forms.IntegerField(widget=forms.NumberInput(attrs=form_control), label="ID(Poblar solamente si se desea eliminar)", required=False, )
     rut = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Rut", max_length=15, required=False)
-    rol = forms.ChoiceField(choices=roles_choices, widget=forms.RadioSelect(attrs={'class': 'form-check-inline'}), label='Tipo de usuario', required=False)
+    rol = forms.TypedChoiceField(choices=roles_choices, widget=forms.RadioSelect(attrs={'class': 'form-check-inline'}), coerce=str ,label='Tipo de usuario', required=False)
     username = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Username", required=False)
     nombre = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Nombre", required=False)
     apellido = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Apellido", required=False)
-    correo = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Correo", required=False)
+    correo = forms.EmailField(widget=forms.EmailInput(attrs=form_control), label="Correo", required=False)
     direccion = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Dirección", required=False)
     password1 = forms.CharField(widget=forms.PasswordInput(attrs=form_control), label="Contraseña", required=False)
     password2 = forms.CharField(widget=forms.PasswordInput(attrs=form_control), label="Confirmar contraseña", required=False)
-    imagen = forms.CharField(widget=forms.FileInput(attrs=form_file), label='Imagen', required=False)
+    imagen = forms.ImageField(widget=forms.FileInput(attrs=form_file), label='Imagen', required=False)
 
     class Meta:
         model = User
