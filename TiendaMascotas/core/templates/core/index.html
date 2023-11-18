@@ -56,25 +56,53 @@
     <!----------------------------------------------------------------------------------------------->
     <!--------------------------------------Formulario------------------------------------------>
     
-    <div class="fondo" >
-        <div class="container" >
-            <div class="row justify-content-center" >
-                <div class="col-4 border border-3 p-4" style="background-color: rgb(34, 155, 176);">
-                    <div class="container text-center p-4" >
-                        <h1>Pide tu hora online!</h1>
+    <div class="container">
+        <div class="row">
+            <!-- Columna para la caja -->
+            <div class="col-md-6">
+                <div class="container">
+                    <div class="card">
+                        <div class="card-body" style="background-color: rgb(253, 253, 253);">
+                            <h1 class="card-title" style="color: black; font-weight: bold; ">Noticias</h1>
+                            <p class="card-text" style="font-weight: bold;">Cleveland Clinic elige al Centro medico Galenos para sellar acuerdo de colaboración</p>
+                            <p class="card-text">Para brindar un mejor servicio a nuestros pacientes y sus familias, RedSalud y Cleveland Clinic han concretado un acuerdo de colaboración que permitirá integrar las mejores prácticas del sector salud.</p>
+                            <p class="card-text" style="font-weight: bold;">Centro medico Galenos se convierte en la primera red de salud certificada como Centro de Excelencia de Boston Scientific Corporation</p>
+                            <p class="card-text">El Departamento de Urología acreditó su expertise en Rezum, técnica para tratar la Hiperplasia Prostática Benigna en una ceremonia realizada en el auditorio de la Clínica RedSalud Providencia.</p>
+                            <p class="card-text" style="font-weight: bold;"> Centro medico Galenos destaca por rápida derivación intrared de pacientes con patologías coronarias</p>
+                            <p class="card-text">A partir de junio de 2022, la Unidad de Emergencia del Centro medico Galenos, comenzó a realizar derivaciones intrared de pacientes con patología coronaria aguda, acción que ha permitido atender adecuadamente a 52 pacientes.</p>
+                        </div>
                     </div>
-                
-                    <form method="POST" id="form" >
+                </div>
+
+            </div>
     
-                        {% csrf_token %} 
-                        {{ form.as_p }} 
-                            <div class="d-grid gap-4 col-5 mx-auto p-2">
-                                <button class="btn btn-dark" type="submit">Solicitar</button>
-                            </div> 
-                    </form>
+            <!-- Columna para el formulario -->
+            <div class="col-md-6">
+                <div class="fondo">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-12 border border-3 p-4" style="background-color: rgb(34, 155, 156);">
+                                <div class="container text-center p-4">
+                                    <h1>Pide tu hora online!</h1>
+                                </div>
+                            
+                                <form method="POST" id="form">
+                                    {% csrf_token %}
+                                    {{ form.as_p }}
+                                    <div class="d-grid gap-4 col-5 mx-auto p-2">
+                                        <button class="btn btn-dark" type="submit">Solicitar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <!-- Otras opciones -->
+
         </div>
     </div>
+    
     
 {% endblock content %}
