@@ -80,8 +80,8 @@ def registro(request):
                 usuario=user, 
                 tipo_usuario='Cliente', 
                 rut=rut, 
-                direccion=direccion, 
-                imagen=request.FILES['imagen'])
+                direccion=direccion
+                )
             messages.error(request, 'Cuenta creada con éxito')
             return redirect(ingreso)
     return render(request, 'core/registro.html', {'form': RegistrarForm()})
