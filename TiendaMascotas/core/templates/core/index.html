@@ -56,10 +56,10 @@
     <!----------------------------------------------------------------------------------------------->
     <!--------------------------------------Formulario------------------------------------------>
     
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <!-- Columna para las noticias -->
-            <div class="col-md-6">
+            <div class="col" id="noticias">
                 <div class="container">
                     <div class="card">
                         <div class="card-body" style="background-color: rgb(253, 253, 253);">
@@ -77,7 +77,7 @@
             </div>
     
             <!-- Columna para el formulario -->
-            <div class="col-md-6">
+            <div class="col-4" id="formulario">
                 <div class="fondo">
                     <div class="container">
                         <div class="row justify-content-center">
@@ -99,13 +99,22 @@
                 </div>
             </div>
             <!-- Nueva columna para la imagen -->
-
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 ">
-                        <img src="{% static 'core/images/planes.png' %}" alt="Descripción de la imagen" class="img-fluid">
+            <div class="col-4" id="imagen">
+                <div class="container-fluid">
+                    <div class="">
+                        <div class="">
+                            <img src="{% static 'core/images/planes.png' %}" alt="Descripción de la imagen" class="img-fluid" style="height: 500px;" >
+                        </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="col-md-12">
+                <p style="color: rgb(255, 255, 255);">p</p>
+                <p style="color: rgb(255, 255, 255);">p</p>
+                <p style="color: rgb(255, 255, 255);">p</p>
+                <p style="color: rgb(255, 255, 255);">p</p>
+
             </div>
 
 
