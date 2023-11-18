@@ -34,11 +34,11 @@ class RegistrarForm(UserCreationForm):
     direccion = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Hierbas Buenas 377', 'class': 'form-control'}), label="Dirección", required=True)
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': '********', 'class': 'form-control'}), label="Contraseña", required=True)
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': '********', 'class': 'form-control'}), label="Confirmar Contraseña", required=True)
-    
+    imagen = forms.CharField(widget=forms.FileInput(attrs=form_file), label='Imagen', required=True)
 
     class Meta:
         model = User
-        fields = ['rut', 'username', 'nombre','apellido', 'correo', 'direccion', 'password1', 'password2']
+        fields = ['rut', 'username', 'nombre','apellido', 'correo', 'direccion', 'password1', 'password2', 'imagen']
 
 class MisDatosForm(UserCreationForm):
     rut = forms.CharField(widget=forms.TextInput(attrs=form_control), label="Rut", max_length=15, required=True, )
