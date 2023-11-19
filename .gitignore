@@ -253,9 +253,11 @@ target/
 __pycache__/
 local_settings.py
 
+# Para los errores en GitHub Desktop y la base de datos
+TiendaMascotas/db.sqlite3
+
 .env
 TiendaMascotas/start.bat
-TiendaMascotas/db.sqlite3
 TiendaMascotas/start.bat
 TiendaMascotas/db.sqlite3
 TiendaMascotas/db.sqlite3
