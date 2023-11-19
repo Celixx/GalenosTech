@@ -80,8 +80,8 @@ def registro(request):
                 usuario=user, 
                 tipo_usuario='Cliente', 
                 rut=rut, 
-                direccion=direccion, 
-                imagen=request.FILES['imagen'])
+                direccion=direccion
+                )
             messages.error(request, 'Cuenta creada con éxito')
             return redirect(ingreso)
     return render(request, 'core/registro.html', {'form': RegistrarForm()})
@@ -111,7 +111,6 @@ def Mantenedor_de_usuarios(request):
                 user.save()
                 rut = form.cleaned_data['rut']
                 direccion = form.cleaned_data['direccion']
-
                 rol = form.cleaned_data['rol']
                 Perfil.objects.create(
                     usuario=user, 
@@ -119,18 +118,14 @@ def Mantenedor_de_usuarios(request):
                     rut=rut, 
                     direccion=direccion, 
                     imagen=request.FILES['imagen'])
-                
                 usuarios = User.objects.all()
                 perfiles = Perfil.objects.all()
-
                 datos = {'form': MantenedorUsuario(), 'usuarios': usuarios, 'perfiles': perfiles}
-
                 return render(request, 'core/Mantenedor_de_usuarios.html', datos)
             elif action == 'guardar':    
                 id = form.cleaned_data['id']            
                 perfil = Perfil.objects.get(id=id)
                 user = User.objects.get(username=perfil.usuario)
-                
                 user.first_name = form.cleaned_data['nombre']
                 user.last_name = form.cleaned_data['apellido']
                 user.username = form.cleaned_data['username']
@@ -145,9 +140,7 @@ def Mantenedor_de_usuarios(request):
                 user.save()
                 usuarios = User.objects.all()
                 perfiles = Perfil.objects.all()
-
                 datos = {'form': MantenedorUsuario(), 'usuarios': usuarios, 'perfiles': perfiles}
-
                 return render(request, 'core/Mantenedor_de_usuarios.html', datos)
             elif action == 'eliminar':
                 id = form.cleaned_data['id']            
@@ -164,15 +157,13 @@ def Mantenedor_de_usuarios(request):
         else:
             usuarios = User.objects.all()
             perfiles = Perfil.objects.all()
-            datos = {'form': MantenedorUsuario(), 'usuarios': usuarios}
+            datos = {'form': MantenedorUsuario(request.POST, request.FILES), 'usuarios': usuarios}
             messages.error(request, 'El formulario ingresador no es válido')
             return render(request, 'core/Mantenedor_de_usuarios.html', datos)
 
     usuarios = User.objects.all()
     perfiles = Perfil.objects.all()
-
     datos = {'form': MantenedorUsuario(), 'usuarios': usuarios}
-
     return render(request, 'core/Mantenedor_de_usuarios.html', datos)
 
 def Mantenedor_de_Productos(request):

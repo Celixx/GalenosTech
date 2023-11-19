@@ -15,28 +15,31 @@
 {% endblock stylesheet %}
 
 {% block content %}
-<div class="container-fluid justify-content-center ">
-    <form id="formulario1" class="container  justify-content-center vh-100 " enctype="multipart/form-data"  method="post" >
-        <!-- Título -->
-        <div class="container text-center">
-            <h1>Registro</h1>
-        </div>
-        <!-- Form Django -->
-        {% csrf_token %}
-        {{ form.as_p }}
-        <!-- Botones -->
-        <div class="container-fluid p-2">
-            <div class="row">
-                <div class="col-12">
-                    <div class="align-content-md-between">
-                        <button type="submit" class="btn btn-secondary btn-sm" name="btn_guardarRegistro">Guardar</button>
-                        <button type="reset" class="btn btn-secondary btn-sm">Limpiar</button>
+
+<body style="background-image: url('media/assets/clinica.jpg');">
+    <div class="container-fluid justify-content-center ">
+        <form id="formulario1" class="container  justify-content-center vh-100 border border-dark border-3 " enctype="multipart/form-data"  method="post"style="background-color: rgb(34, 155, 176); margin-top: 20px;" >
+            <!-- Título -->
+            <div class="container text-center">
+                <h1>Registrarse</h1>
+            </div>
+            <!-- Form Django -->
+            {% csrf_token %}
+            {{ form.as_p }}
+            <!-- Botones -->
+            <div class="container-fluid p-2">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="align-content-md-between">
+                            <button type="submit" class="btn btn-dark btn-sm" name="btn_guardarRegistro">Guardar</button>
+                            <button type="reset" class="btn btn-dark btn-sm">Limpiar</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </form>
-</div>
+        </form>
+    </div>
+</body>
 
 {% endblock content %}
 
